@@ -1,6 +1,6 @@
 @extends('admin.adminlayout')
 
-@section('title','Admin - Users List')
+@section('title','Admin - Comment List')
 
 
 @section('content')

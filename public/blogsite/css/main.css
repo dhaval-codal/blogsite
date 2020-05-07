@@ -3587,7 +3587,7 @@ dl.accordion.time-line:before {
 }
 
 .blog-pagination .page-item.active .page-link {
-  background-color: #8490ff;
+  background-color: lightgray;
   border-color: transparent;
   color: #fff;
 }

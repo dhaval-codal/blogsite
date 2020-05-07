@@ -62,4 +62,8 @@ Route::get('/adminhome', function () {
 Route::post('/adminlogin', 'adminwork@login');
 Route::post('/crtblog', 'adminwork@crtblog');
 Route::post('/setcomment', 'BlogController@setcomment');
+Route::post('/bsearch', 'BlogController@bsearch');
+Route::get('/bsearch', 'BlogController@bsearch');
 Route::get('/logout', 'adminwork@logout');
+
+Route::get('demos/livesearch','BlogController@liveSearch');        

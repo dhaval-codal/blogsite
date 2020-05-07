@@ -267,6 +267,7 @@ th {
 label {
   display: inline-block;
   margin-bottom: .5rem;
+  margin-left: -155px;
 }
 
 button {
@@ -4236,7 +4237,7 @@ tbody.collapse.show {
   margin-left: -1px;
   line-height: 1.25;
   color: #007bff;
-  background-color: #fff;
+  background-color: gray;
   border: 1px solid #dee2e6;
 }
 
