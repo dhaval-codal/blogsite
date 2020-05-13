@@ -45,7 +45,23 @@
 
 			      <nav id="nav-menu-container">
 			        <ul class="nav-menu">
-			          <li><a href="{{ url('/') }}" style="font-size: 25px;text-decoration: none;">Home</a></li>
+			          	<li><a href="{{ url('/') }}" style="font-size: 25px;text-decoration: none;">Home</a></li>
+			          @if(Auth::user())
+			          	<li style="font-size: 25px;text-decoration: none;color: blue;font-weight: bolder;">
+			          		&nbsp;&nbsp;Hello {{ Auth::user()->name }}
+			          	</li>&nbsp;&nbsp;&nbsp;
+			          	<li style="margin-right: -40px;">
+			          		<a href="{{ url('logout') }}" style="font-size: 25px;text-decoration: none;color: blue;">
+					          Logout
+					        </a>
+			          	</li>
+			          @else
+			          	<li style="margin-right: -40px;">
+			          		<a href="{{ url('loginpage') }}" style="font-size: 25px;text-decoration: none;color: blue;">
+					          login or Sign up
+					        </a>
+			          	</li>
+			          @endif
 			        </ul>
 			      </nav><!-- #nav-menu-container -->		    		
 		    	</div>
@@ -74,7 +90,7 @@
 			@yield('content')
             
 
-			<script src="{{ url('blogsite/js/vendor/jquery-2.2.4.min.js') }}"></script>
+			{{-- <script src="{{ url('blogsite/js/vendor/jquery-2.2.4.min.js') }}"></script> --}}
 			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>			
   			<script src="{{ url('blogsite/js/easing.min.js') }}"></script>			
 			<script src="{{ url('blogsite/js/hoverIntent.js') }}"></script>

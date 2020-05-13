@@ -103,15 +103,15 @@
 				@csrf
 				<input type="hidden" name="blogid" value="{{ $data->id }}">
 				<input type="hidden" id="cntid{{ $comment->id }}" name="cntid" value="">
-				<div class="form-group form-inline">
+				{{-- <div class="form-group form-inline">
 				  <div class="form-group col-lg-6 col-md-12 name">
 				    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name">
 				  </div>
 				  <div class="form-group col-lg-6 col-md-12 email">
 				    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email address" >
 				  </div>										
-				</div>
-				<div class="form-group">
+				</div> --}}
+				<div class="form-group" style="margin-top: -20px;">
 					<textarea class="form-control mb-10" rows="5" name="message" placeholder="Enter Comment Here" required=""></textarea>
 				</div>
 				<button class="primary-btn text-uppercase">Post Reply</button>	
@@ -125,20 +125,20 @@
 								<h4>Leave a New Comment</h4>
 								<form method="post" action="{{ url('setcomment') }}">
 									@csrf
-									<input type="hidden" name="blogid" value="{{ $data->id }}">
-									<input type="hidden" name="cntid" id="cntid" value="0">
-									<div class="form-group form-inline">
+									{{-- <div class="form-group form-inline">
 									  <div class="form-group col-lg-6 col-md-12 name">
 									    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" >
 									  </div>
 									  <div class="form-group col-lg-6 col-md-12 email">
 									    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email address" >
 									  </div>										
-									</div>
-									<div class="form-group">
+									</div> --}}
+									<div class="form-group" style="margin-top: -20px;">
 										<textarea class="form-control mb-10" rows="5" name="message" placeholder="Enter Comment Here" required=""></textarea>
 									</div>
 									<button class="primary-btn text-uppercase">Post Comment</button>	
+									<input type="hidden" name="blogid" value="{{ $data->id }}">
+									<input type="hidden" name="cntid" id="cntid" value="0">
 								</form>
 							</div>
 						</div>

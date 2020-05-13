@@ -7,7 +7,7 @@ use App\User;
 use App\comments;
 use App\blog;
 use Hash;
-
+use Auth;
 
 class BlogController extends Controller
 {
@@ -72,35 +72,28 @@ class BlogController extends Controller
     public function setcomment(Request $req)
     {
     	//dd($req->input());
-    	$bid = $req->input('blogid');
-    	$user = User::where('email',$req->input('email'))->first();
-        if(!$user){
-            $user = new User;
-            $user->name = $req->input('name');
-            $user->email = $req->input('email');
-            $user->password = Hash::make(rand(999999,9999999));
-            $user->type = 0;       
-            $user->save();
+        $user = Auth::user();
+        if($user){
+            
+            $bid = $req->input('blogid');
+            $comment = new comments;
+            $comment->uid = $user->id;
+            $comment->bid = $bid;
+            $comment->comment = $req->input('message');
+            if($req->input('cntid') == 0){
+                $comment->cmttype = 0;
+            } else {
+                $comment->cmttype = $req->input('cntid');
+            }
+            $comment->save();
+
+            return redirect("/bdetail/$bid");
+
+        } else {
+            return redirect('/loginpage')->withErrors(['First Sing Up / Log in. Only then you can comment on this post.']);;
         }
     
-    	$comment = new comments;
-    	$comment->uid = $user->id;
-    	$comment->bid = $bid;
-    	$comment->comment = $req->input('message');
-        if($req->input('cntid') == 0){
-            $comment->cmttype = 0;
-        } else {
-            $comment->cmttype = $req->input('cntid');
-        }
-    	$comment->save();
-
-    	return redirect("/bdetail/$bid");
     }
 
-
-    public function liveSearch(Request $request)
-    { 
-        
-    }
 
 }

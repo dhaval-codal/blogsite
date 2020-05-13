@@ -34,22 +34,21 @@
 			<div class="wrap-login100 p-b-160 p-t-50">
 				<form class="login100-form validate-form" method="post" action="{{ url('/adminlogin') }}">
 					@csrf
-					<span class="login100-form-title p-b-43">
-						Owner Login
+					<span class="login100-form-title p-b-43" style="font-weight: bolder;">
+						<a href="{{ url('/') }}" style="text-decoration: none;font-size: 30px;color: black;background: lightgray;padding: 10px;border-radius: 5px;">CODAL BLOG SITE</a>
+						&nbsp;Login Here !!!
 					</span>
 					
-					<span class="login100-form-title p-b-43">
- 						@if (count($errors) > 0)
-						   <div class = "alert alert-danger" style="background: #FA8072; border-radius: 8px;">
-						      <ul>
-						         @foreach ($errors->all() as $error)
-						            <li>{{ $error }}</li>
-						         @endforeach
-						      </ul>
-						   </div>
-						@endif
-					</span>
-
+					@if (count($errors) > 0)
+					   <div class = "alert alert-danger" style="background: #FA8072; border-radius: 8px;font-size: 20px;">
+					      <ul>
+					         @foreach ($errors->all() as $error)
+					            <li>{{ $error }}</li>
+					         @endforeach
+					      </ul>
+					   </div>
+					@endif
+					
 
 
 					<div class="wrap-input100 rs1 validate-input" data-validate = "Username is required">
@@ -63,12 +62,29 @@
 						<span class="label-input100">Password</span>
 					</div>
 
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+					<div class="container-login100-form-btn" >
+						<button class="login100-form-btn" >
 							Sign in
 						</button>
 					</div>
+
 				</form>
+				<br>
+				<div class="container-login100-form-btn" >
+
+					<a href="{{ url('login/facebook') }}" class="btn btn-primary btn-lg btn-block" style="background:  darkblue; border-color: darkblue; font-weight: bolder;">
+					    <i class="fa fa-facebook fa-fw" style="margin-left: -2px; margin-right: 15px;"></i> Sign in with Facebook
+					</a>
+
+					<a href="{{ url('login/twitter') }}" class="btn btn-primary btn-lg btn-block" style="font-weight: bolder;">
+					    <i class="fa fa-twitter fa-fw" style="margin-left:  -22px; margin-right: 15px;"></i> Sign in with Twitter
+					</a>
+
+					<a href="{{ url('login/google') }}" class="btn btn-primary btn-lg btn-block" style="background:  red; border-color: red;font-weight: bolder;">
+					    <i class="fa fa-google fa-fw" style="margin-left: -30px; margin-right: 15px;"></i> Sign in with Gmail
+					</a>
+
+				</div>
 			</div>
 		</div>
 	</div>

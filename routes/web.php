@@ -16,10 +16,11 @@ use App\comments;
 */
 
 Route::get('/', 'BlogController@index');
-
+Route::get('/home', 'BlogController@index');
+Route::get('/logout', 'adminwork@logout');
 Route::get('/bdetail/{d}', 'BlogController@bdetail');
 
-Route::get('/owner', function () {
+Route::get('/loginpage', function () {
     return view('adminlogin');
 });
 
@@ -67,3 +68,14 @@ Route::get('/bsearch', 'BlogController@bsearch');
 Route::get('/logout', 'adminwork@logout');
 
 Route::get('demos/livesearch','BlogController@liveSearch');        
+
+
+
+Route::get('login/facebook', 'adminwork@redirectToProvider');
+Route::get('login/facebook/callback', 'adminwork@handleProviderCallback');
+
+Route::get('login/google', 'adminwork@gredirectToProvider');
+Route::get('login/google/callback', 'adminwork@ghandleProviderCallback');
+
+Route::get('login/twitter', 'adminwork@tredirectToProvider');
+Route::get('login/twitter/callback', 'adminwork@thandleProviderCallback');
