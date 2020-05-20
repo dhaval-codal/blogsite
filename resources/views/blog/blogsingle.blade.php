@@ -40,11 +40,20 @@
 								</div>
 								<div class="col-lg-9 col-md-9">
 									<h3 class="mt-20 mb-20">{{ $data->ptitle }}</h3>
+									
 									<p class="excert">
 										{{ $data->psummary }}
 									</p>
-									{!!html_entity_decode($data->posttext)!!}
+
+									<img src="{{ url('/blogimages/'.$data->imgurl) }}" alt="Sorry ,Image Is Not Available" style="width: 100%;height: auto;">
 									
+									{{-- @if($data->imgurl == null)
+										<img src="{{ url('/blogimages/missing.jpg') }}" style="width: 100%;height: auto;">
+									@else							
+										<img src="{{ url('/blogimages/'.$data->imgurl) }}"style="width: 100%;height: auto;">
+									@endif --}}
+									<br><br>
+									{!!html_entity_decode($data->posttext)!!}
 									
 								</div>
 								

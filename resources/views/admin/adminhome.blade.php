@@ -13,25 +13,48 @@
 	        <h1 class="h3 mb-0 text-gray-800" style="font-size: 45px;"><b>Create Blog</b></h1>
 	      </div>
 	      <br>
-      	<form method="post" action="{{ url('crtblog') }}">
+
+        @if (count($errors) > 0)
+           <div class = "alert alert-danger" style="background: #FA8072; border-radius: 8px;padding: 5px;">
+              <ul>
+                 @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                 @endforeach
+              </ul>
+           </div>
+        @endif
+        
+
+      	<form method="post" action="{{ url('crtblog') }}" enctype="multipart/form-data">
       	@csrf
         <!-- Nested Row within Card Body -->
         <div class="row">
           <div class="col-lg-12">
                 <div class="form-group row">
-                  <div class="col-sm-4 mb-3 mb-sm-0">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
                     <input type="text" class="form-control form-control-user" name="btitle" placeholder="Enter Blog Title" id="btitle" value="{{ old('btitle') }}" required="">
                   </div>
-                  <div class="col-sm-4 mb-3 mb-sm-0">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
                     <input type="text" class="form-control form-control-user" name="bsummary" placeholder="Enter Blog Summary" id="bsummary" value="{{ old('bsummary') }}" required="">
                   </div>
-                  <div class="col-sm-4 mb-3 mb-sm-0">
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" name="blog_img" id="blog_img">
+                      <label class="custom-file-label" for="customFile">Select Image For Blog</label>
+                    </div>  
+                  </div>
+                  <div class="col-sm-6 mb-3 mb-sm-0">
                     <button class="btn btn-primary btn-user btn-block" id="add">
                       Add
                     </button>
                   </div>
                 </div>
+                  
           </div>
+
         </div><br>
 	      <textarea id="posttext" name="posttext" style="height: 300px;">Enter Blog Post Text Here.</textarea>
 	    </form>

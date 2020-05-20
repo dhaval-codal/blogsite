@@ -51,9 +51,19 @@
 									</div>
 								</div>
 								<div class="col-lg-9 col-md-9 ">
-									<div class="feature-img">
+									<div class="img-fluid">
 										<br>
-									</div>
+										@if($d->imgurl == null)
+											<a href="#">
+											  <img alt="Sorry ,Image Is Not Available">
+											</a>
+										@else							
+											<a target="_blank" href="{{ url('/blogimages/'.$d->thmbpath) }}">
+											  <img src="{{ url('/blogimages/'.$d->thmbpath) }}" alt="Sorry ,Image Is Not Available">
+											</a>
+										@endif
+										
+									</div><br>
 									<h3>{{ $d->ptitle }}</h3><br>
 									<p class="excert">
 										{{ $d->psummary }}

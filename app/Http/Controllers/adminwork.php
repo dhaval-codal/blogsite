@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Socialite;
 use Cache;
+use Image;
 
 class adminwork extends Controller
 {
@@ -136,12 +137,33 @@ class adminwork extends Controller
     {
     	//dd($req->input());
     	$user = Auth::user();
+        $this->validate($req, [
+
+            'btitle' => 'required',
+            'bsummary' => 'required',
+            'blog_img' => 'required|image|mimes:jpeg,png,jpg|max:10000',
+            'posttext' => 'required',
+            
+        ]);
+        
 		if($user){
 			$post = new blog;
 			$post->ptitle = $req->input('btitle');
 			$post->psummary = $req->input('bsummary');
 			$post->author = $user->name;
-			$mytime = Carbon::now();
+            $mytime = Carbon::now();
+            
+            $destinationPath = public_path('/blogimages');
+            $bimage = $req->file('blog_img');
+            $blogimage = $user['name'].date_format($mytime,"d-m-yy").'.'.$bimage->getClientOriginalExtension();
+            $bimage->move($destinationPath, $blogimage);
+            $post->imgurl = $blogimage;
+			
+            $destinationPath = public_path('/blogimages/'.$blogimage);
+            $thbname = $user['name'].date_format($mytime,"d-m-yy").'-thmb.'.$bimage->getClientOriginalExtension();
+            $SavePath = public_path('/blogimages/'.$thbname);
+            $img = Image::make($destinationPath)->resize(300, 185)->save($SavePath);
+            
 			$post->createdate = date_format($mytime,"d M,Y H:i A");
 			$post->posttext = $req->input('posttext');
 			$post->save();

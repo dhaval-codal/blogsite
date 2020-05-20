@@ -27,6 +27,10 @@ class BlogController extends Controller
                 $reply = count(comments::where('bid',$d->id)->where('cmttype',"!=",0)->get());
                 $d->comments = $cnt;
                 $d->reply = $reply;
+                if($d->imgurl != null ) {
+                    $thname = explode('.',$d->imgurl);
+                    $d->thmbpath  = $thname[0].'-thmb.'.$thname[1];
+                }
             }
             return view('blog.bsearch',['datas'=>$datas]);
         } else {
@@ -37,6 +41,10 @@ class BlogController extends Controller
                 $reply = count(comments::where('bid',$d->id)->where('cmttype',"!=",0)->get());
                 $d->comments = $cnt;
                 $d->reply = $reply;
+                if($d->imgurl != null ) {
+                    $thname = explode('.',$d->imgurl);
+                    $d->thmbpath  = $thname[0].'-thmb.'.$thname[1];
+                }
             }
             return view('blog.bloghome',['data'=>$data]);
         }
